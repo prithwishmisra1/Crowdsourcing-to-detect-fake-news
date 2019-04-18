@@ -14,6 +14,7 @@ class News:
         self.user_id = user_id
         self.users_seen = list(users_seen)
         self.users_flagged = dict(users_flagged)
+        self.active = 1
 
     def push_news(self):
 
@@ -25,7 +26,8 @@ class News:
              'user_id':self.user_id,
              'user_seen':self.users_seen,
              'users_seen_infinity':user_list_length,
-             'users_flagged':self.users_flagged}
+             'users_flagged':self.users_flagged,
+             'activity_status':self.active}
 
 
 

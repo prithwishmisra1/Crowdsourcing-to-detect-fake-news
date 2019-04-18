@@ -6,7 +6,7 @@ from News import News
 from User import User
 
 
-ch = input('2. Existing User\n1. New User')
+ch = input('1. New User\n2. Existing User')
 
 if ch == '1':
     new_user = User()

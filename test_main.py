@@ -5,6 +5,6 @@ from User import User
 
 fb = firebase.FirebaseApplication('https://crowdsourcing101-357ca.firebaseio.com/', None)
 
-newslist = fb.get('/News', None)
+rs = fb.get('News', None)
 
-print(len(newslist.keys()))
+print(len(rs))

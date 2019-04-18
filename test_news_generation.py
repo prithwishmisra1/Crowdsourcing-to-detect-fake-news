@@ -18,7 +18,7 @@ print(user_list)
 l = len(user_list)
 
 
-for i in range(0, 80):
+for i in range(0, 38):
     user_id = user_list[random.randint(0, l-1)]
     head = "This is a sample head"
     content = "This is a sample content"
@@ -33,7 +33,7 @@ for i in range(0, 80):
         if user_list[j] not in users_seen and user_list[j] != user_id:
             users_seen.append(user_list[j])
             m = m-1
-    print(users_seen)
+    #print(users_seen)
 
     #randomly selecting the users who have flagged the news
     j = random.randint(0, len(users_seen)-1)

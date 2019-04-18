@@ -15,6 +15,8 @@ class User:
             self.alpha = alpha
             self.beta = beta
             self.gamma = gamma
+            self.user_rating_real = 0
+            self.user_rating_fake = 0
             self.neighbours = []
 
         elif user == None:
@@ -23,10 +25,12 @@ class User:
 
         else:
 
-            self.id = user['id']
-            self.alpha = user['alpha']
-            self.beta = user['beta']
-            self.gamma = user['gamma']
+            self.id = user['id'] #getting the user id
+            self.alpha = user['alpha'] #getting the alpha value
+            self.beta = user['beta'] #getting the beta value
+            self.gamma = user['gamma']  #getting the gamma value
+            self.user_rating_real = user['user_rating_count']['real_flag'] #no of real flags
+            self.user_rating_fake = user['user_rating_count']['fake_flag'] #no of fake flags
             self.neighbours = []
 
     def push_user(self):
@@ -35,7 +39,9 @@ class User:
 
         push_val = {'alpha':self.alpha,
              'beta':self.beta,
-             'gamma':self.gamma}
+             'gamma':self.gamma,
+             'user_rating_count':{'fake_flag':self.user_rating_fake,
+                                  'real_flag':self.user_rating_real}}
 
         key = fb.post('/Users',push_val)
         id_val = key['name']
@@ -75,9 +81,8 @@ class User:
         if self.id not in news_list[news_id]['users_flagged'].keys():
             ch =  input("Flag given news? (y/n)")
             if ch  == 'y':
+
                 flag = int(input('Enter 1 for real and -1 for fake'))
                 users_flagged = dict(news_list[news_id]['users_flagged'])
                 users_flagged.update({self.id:flag})
                 fb.put('/News/'+news_id, 'users_flagged',users_flagged)
-
-
