@@ -140,12 +140,11 @@ for i in admin_news_flagging.keys():
 
                 alpha = (alpha*total_real)/(total_real+1)
                 updated_user_rating.update({user_id:{'alpha':alpha,'user_rating_count':{'real_flag':total_real+1}}})
-         fb.put('News'+i, 'activity_status', 0)
-print(updated_user_rating)
+         #fb.put('News'+i, 'activity_status', 0) #uncomment this line for actual output
+#print(updated_user_rating)
 
-updating the user ratings to the database
+#updating the user ratings to the database
 
-uncomment from here to the end for the original code
 
 for user_id in updated_user_rating.keys():
 
