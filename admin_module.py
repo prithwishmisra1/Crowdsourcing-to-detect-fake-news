@@ -103,8 +103,7 @@ for i in admin_news_flagging.keys():
 
                 beta = (beta*total_fake)/(total_fake+1)
                 updated_user_rating.update({user_id:{'beta':beta,'user_rating_count':{'fake_flag':total_fake+1}}})
-        #uncomment the line below for the original code
-        #fb.delete('News/'+i, None)
+        fb.delete('News/'+i, None)
 
     elif admin_news_flagging[i] == 1:
 
@@ -141,30 +140,29 @@ for i in admin_news_flagging.keys():
 
                 alpha = (alpha*total_real)/(total_real+1)
                 updated_user_rating.update({user_id:{'alpha':alpha,'user_rating_count':{'real_flag':total_real+1}}})
-        #uncomment the line below for the original code
-        # fb.put('News'+i, 'activity_status', 0)
+         fb.put('News'+i, 'activity_status', 0)
 print(updated_user_rating)
 
-#updating the user ratings to the database
+updating the user ratings to the database
 
-#uncomment from here to the end for the original code
+uncomment from here to the end for the original code
 
-# for user_id in updated_user_rating.keys():
-#
-#     if 'alpha' in updated_user_rating[user_id].keys():
-#
-#         fb.put('Users/'+user_id, 'alpha', updated_user_rating[user_id]['alpha'])
-#
-#     if 'beta' in updated_user_rating[user_id].keys():
-#
-#         fb.put('Users/'+user_id, 'beta', updated_user_rating[user_id]['beta'])
-#
-#     if 'user_rating_count' in updated_user_rating[user_id].keys():
-#
-#         if 'real_flag' in updated_user_rating[user_id]['user_rating_count'].keys():
-#
-#             fb.put('Users/'+user_id+'/user_rating_count/', 'real_flag', updated_user_rating[user_id]['user_rating_count']['real_flag'])
-#
-#         if 'fake_flag' in updated_user_rating[user_id]['user_rating_count'].keys():
-#
-#             fb.put('Users/'+user_id+'/user_rating_count/', 'fake_flag', updated_user_rating[user_id]['user_rating_count']['fake_flag'])
+for user_id in updated_user_rating.keys():
+
+    if 'alpha' in updated_user_rating[user_id].keys():
+
+        fb.put('Users/'+user_id, 'alpha', updated_user_rating[user_id]['alpha'])
+
+    if 'beta' in updated_user_rating[user_id].keys():
+
+        fb.put('Users/'+user_id, 'beta', updated_user_rating[user_id]['beta'])
+
+    if 'user_rating_count' in updated_user_rating[user_id].keys():
+
+        if 'real_flag' in updated_user_rating[user_id]['user_rating_count'].keys():
+
+            fb.put('Users/'+user_id+'/user_rating_count/', 'real_flag', updated_user_rating[user_id]['user_rating_count']['real_flag'])
+
+        if 'fake_flag' in updated_user_rating[user_id]['user_rating_count'].keys():
+
+            fb.put('Users/'+user_id+'/user_rating_count/', 'fake_flag', updated_user_rating[user_id]['user_rating_count']['fake_flag'])
